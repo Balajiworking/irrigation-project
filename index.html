@@ -36,6 +36,11 @@
   </table>
   
   <script>
+    function convertUTCToIST(utcTimestamp) {
+      const options = { timeZone: 'Asia/Kolkata', hour12: false };
+      return new Date(utcTimestamp).toLocaleString('en-US', options);
+    }
+
     function populateTable(data) {
       var tableBody = document.getElementById('tableBody');
       tableBody.innerHTML = ''; // Clear previous data
@@ -44,7 +49,7 @@
         var row = document.createElement('tr');
         
         var timestampCell = document.createElement('td');
-        timestampCell.textContent = feed.created_at;
+        timestampCell.textContent = convertUTCToIST(feed.created_at);
         row.appendChild(timestampCell);
         
         var moistureCell = document.createElement('td');
